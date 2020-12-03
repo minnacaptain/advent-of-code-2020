@@ -1,5 +1,5 @@
 const decoder = new TextDecoder("utf-8");
-const input = decoder.decode(Deno.readFileSync("./day3_input.ts"));
+const input = decoder.decode(Deno.readFileSync("./day3_input"));
 const treeRowStubs = input.split(`
 `);
 
