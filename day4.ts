@@ -14,30 +14,29 @@ rows.forEach((row) => {
 });
 passports = [...passports, current];
 
-const between = (min: number, max: number) => (x: string) =>
+const isBetween = (min: number, max: number) => (x: string) =>
   Number(x) >= min && Number(x) <= max;
 
-const validateHairColor = (x: string) =>
+const isValidHairColor = (x: string) =>
   Boolean(x.match(/^#{1}[a-f0-9]{6}$/)?.length);
 
-const validateEyeColor = (x: string) =>
+const isValidEyeColor = (x: string) =>
   ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"].includes(x);
 
-const validatePassportId = (x: string) =>
-  Boolean(x.match(/^[0-9]{9}$/)?.length);
+const isValidPassportId = (x: string) => Boolean(x.match(/^[0-9]{9}$/)?.length);
 
-const validateHeight = (x: string) =>
-  (x.endsWith("cm") && between(150, 193)(x.replace("cm", ""))) ||
-  (x.endsWith("in") && between(59, 76)(x.replace("in", "")));
+const isValidHeight = (x: string) =>
+  (x.endsWith("cm") && isBetween(150, 193)(x.replace("cm", ""))) ||
+  (x.endsWith("in") && isBetween(59, 76)(x.replace("in", "")));
 
 const validationRules = {
-  byr: between(1920, 2002),
-  iyr: between(2010, 2020),
-  eyr: between(2020, 2030),
-  hgt: validateHeight,
-  hcl: validateHairColor,
-  ecl: validateEyeColor,
-  pid: validatePassportId,
+  byr: isBetween(1920, 2002),
+  iyr: isBetween(2010, 2020),
+  eyr: isBetween(2020, 2030),
+  hgt: isValidHeight,
+  hcl: isValidHairColor,
+  ecl: isValidEyeColor,
+  pid: isValidPassportId,
 };
 
 // Part 1
